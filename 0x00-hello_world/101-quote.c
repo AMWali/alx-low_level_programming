@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 /**
- * main -  main function of a C program that prints to a standard error
+ * main - main function of program that prints to a standard error
  *
  * Return: 1
  */
