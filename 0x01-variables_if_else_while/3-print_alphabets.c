@@ -3,7 +3,7 @@
 /**
  * main - main function to return void argument
  *
- * Return: return 0 if compilation successful
+ * Return: return 0 if Successful
  */
 int main(void)
 {
