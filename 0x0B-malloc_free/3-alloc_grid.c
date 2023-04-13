@@ -1,77 +1,54 @@
-#include <stdio.h>
 #include "main.h"
+#include <stdlib.h>
 
 /**
- * _atoi - converts a string to an integer
- * @s: string to be converted
- *
- * Return: the int converted from the string
- */
-int _atoi(char *s)
-{
-	int i, d, n, len, f, digit;
-
-	i = 0;
-	d = 0;
-	n = 0;
-	len = 0;
-	f = 0;
-	digit = 0;
-
-	while (s[len] != '\0')
-	len++;
-
-	while (i < len && f == 0)
-{
-	if (s[i] == '-')
-	++d;
-
-	if (s[i] >= '0' && s[i] <= '9')
-{
-	digit = s[i] - '0';
-	if (d % 2)
-	digit = -digit;
-	n = n * 10 + digit;
-	f = 1;
-
-	if (s[i + 1] < '0' || s[i + 1] > '9')
-	break;
-	f = 0;
-}
-	i++;
-}
-
-	if (f == 0)
-	return (0);
-
-	return (n);
-}
-
-/**
-*main - multiplies two numbers
-*@argc: number of arguments
-*@argv: array of arguments
-*
-*Return: 0 (Success), 1 (Error)
+*alloc_grid - nested loop to make grid
+*@width: width input
+*@height: height input
+*Return: pointer to 2 dim. array
 */
 
-int main(int argc, char *argv[])
+int **alloc_grid(int width, int height)
 
 {
-	int result, num1, num2;
 
-	if (argc < 3 || argc > 3)
+	int **mee;
+
+	int x, y;
+
+	if (width <= 0 || height <= 0)
+
+	return (NULL);
+
+
+
+	mee = malloc(sizeof(int *) * height);
+
+	if (mee == NULL)
+
+	return (NULL);
+
+	for (x = 0; x < height; x++)
 {
-	printf("Error\n");
-	return (1);
+	mee[x] = malloc(sizeof(int) * width);
+	if (mee[x] == NULL)
+
+{
+	for (; x >= 0; x--)
+	free(mee[x]);
+	free(mee);
+	return (NULL);
 }
 
-	num1 = _atoi(argv[1]);
-	num2 = _atoi(argv[2]);
-	result = num1 * num2;
+}
+	for (x = 0; x < height; x++)
 
-	printf("%d\n", result);
+{
+	for (y = 0; y < width; y++)
+	mee[x][y] = 0;
+}
 
-	return (0);
+return (mee);
+
 }
 
